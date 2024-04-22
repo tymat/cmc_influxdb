@@ -159,8 +159,6 @@ impl CryptoListing {
         let cryptolisting: CryptoListing =
             serde_json::from_str(&res).expect("JSON was not well-formatted");
         cryptolisting
-        //let cryptolisting: CryptoListing = serde_json::from_str(res.unwrap()).expect("JSON was not well-formatted");
-        //cryptolisting
     }
 
     pub async fn persist_db(&self) -> Result<(), Error> {
