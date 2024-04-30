@@ -1,3 +1,5 @@
+mod server;
+
 use chrono::{DateTime, Local, Utc};
 use colorism::{foreground::Fore, util::RESET};
 use daemonize::Daemonize;
@@ -8,7 +10,6 @@ use serde::Deserialize;
 use std::env;
 use std::fs::File;
 use std::io::Read;
-use std::path::Path;
 use tokio::time::{sleep, Duration};
 
 fn main() -> Result<(), failure::Error> {
@@ -30,7 +31,9 @@ fn main() -> Result<(), failure::Error> {
     match daemonize.start() {
         Ok(_) => {
             println!("Success, daemonized");
-            fetch_main(cmc_password.as_str());
+            loop {
+                fetch_main(cmc_password.as_str());
+            }
             Ok(())
         }
         Err(_) => todo!(),
@@ -179,7 +182,6 @@ impl CryptoListing {
                 .await
                 .expect("TODO: panic message");
         }
-
         Ok(())
     }
 }
@@ -212,6 +214,7 @@ impl CmcPrice {
             quarter_change: rng.gen(),
         }
     }
+
 
     pub async fn insert_to_db(&self, ticker: &str) -> Result<(), Error> {
         let cmc_prices = vec![self.into_query(ticker)];
