@@ -149,7 +149,7 @@ impl CryptoListing {
 
     pub async fn fetch_web(api_key: &str) -> CryptoListing {
         let client = reqwest::Client::new();
-        let cmc_url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=6000&convert=USD";
+        let cmc_url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest?start=1&limit=5500&convert=USD";
         let res = client
             .get(cmc_url)
             .header("X-CMC_PRO_API_KEY", api_key)
