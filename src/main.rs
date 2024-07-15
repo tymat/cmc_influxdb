@@ -128,7 +128,7 @@ pub struct CryptoListingStatus {
     elapsed: i32,
     credit_count: i32,
     notice: Option<String>,
-    total_count: i32,
+    total_count: Option<i32>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
