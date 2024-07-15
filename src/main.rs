@@ -134,7 +134,7 @@ pub struct CryptoListingStatus {
 #[derive(Deserialize, Debug, Clone)]
 pub struct CryptoListing {
     status: CryptoListingStatus,
-    data: Vec<CryptoData>,
+    data: Option<Vec<CryptoData>>,
 }
 
 impl CryptoListing {
